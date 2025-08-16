@@ -2,15 +2,18 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware для JSON
 app.use(express.json());
 
-// Тестовий маршрут
+// корінь — щоб у браузері було що побачити
 app.get("/", (req, res) => {
-  res.send("TON Vault Backend працює 🚀");
+  res.type("text").send("✅ TON Vault Backend працює");
 });
 
-// Старт сервера
+// простий health-check
+app.get("/ping", (req, res) => {
+  res.type("text").send("pong");
+});
+
 app.listen(PORT, () => {
-  console.log(`Сервер запущений на порту ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
